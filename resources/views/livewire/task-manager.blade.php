@@ -48,7 +48,6 @@
 
     <!-- Mobile Header -->
     <div class="d-lg-none mobile-header">
-        <br>
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <h4 class="mb-0">
