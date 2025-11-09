@@ -1,23 +1,21 @@
-// Simple JavaScript for toggling task completion
-        document.querySelectorAll('.form-check-input').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const taskCard = this.closest('.task-card');
-                if (this.checked) {
-                    taskCard.classList.add('completed-task');
-                } else {
-                    taskCard.classList.remove('completed-task');
-                }
-            });
-        });
+// Close mobile filters when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileFilters = document.getElementById('mobileFilters');
+    const filterBtn = document.querySelector('[data-bs-target="#mobileFilters"]');
+    
+    if (mobileFilters && !mobileFilters.contains(event.target) && !filterBtn.contains(event.target)) {
+        const bsCollapse = new bootstrap.Collapse(mobileFilters);
+        bsCollapse.hide();
+    }
+});
 
-        // Mobile filter options
-        document.querySelectorAll('.filter-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove active class from siblings
-                this.parentElement.querySelectorAll('.filter-option').forEach(el => {
-                    el.classList.remove('active');
-                });
-                // Add active class to clicked option
-                this.classList.add('active');
-            });
-        });
+// Prevent body scroll when modal is open
+document.addEventListener('livewire:init', function() {
+    Livewire.on('showModal', (value) => {
+        if (value) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+});
